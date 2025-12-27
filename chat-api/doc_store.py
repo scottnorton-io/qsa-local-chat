@@ -9,8 +9,9 @@ from typing import Iterable, List
 from pypdf import PdfReader
 import docx  # python-docx
 
-from . import settings
-from .ollama_client import embed_text
+import settings
+import ollama_client
+from ollama_client import embed_text
 
 @dataclass
 class Chunk:
