@@ -68,7 +68,7 @@ def call_ollama(model: str, system_prompt: str, user_message: str) -> str:
         "options": {
             # Generation controls from central settings
             "temperature": settings.TEMPERATURE,
-            "top_p": settings.TOP,
+            "top_p": settings.TOP_P,
             "num_predict": settings.MAX_TOKENS,
         },
         "messages": [
