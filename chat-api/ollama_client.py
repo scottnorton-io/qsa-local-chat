@@ -3,7 +3,7 @@ from typing import List
 
 import httpx
 
-from . import settings
+import settings
 
 class OllamaError(RuntimeError):
     """Raised when calls to Ollama fail or return unexpected data."""
