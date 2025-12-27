@@ -6,9 +6,9 @@ from fastapi import FastAPI, Request, Form, UploadFile, File
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
-from . import settings
-from .ollama_client import call_ollama, OllamaError
-from .doc_store import (
+import settings
+from ollama_client import call_ollama, OllamaError
+from doc_store import (
     Chunk,
     list_docs,
     extract_text_from_upload,
