@@ -55,17 +55,17 @@ def embed_text(text: str) -> List[float]:
     raise OllamaError("No embedding vector found in Ollama response")
     
     def call_ollama(model: str, system_prompt: str, user_message: str) -> str:
-    """Call Ollama /api/chat and return the assistant's reply text.
+        """Call Ollama /api/chat and return the assistant's reply text.
 
-    Uses non-streaming mode for simplicity. Raises OllamaError on any
-    connectivity or payload issues.
-    """
-    url = f"{settings.OLLAMA_HOST}/api/chat"
+        Uses non-streaming mode for simplicity. Raises OllamaError on any
+        connectivity or payload issues.
+        """
+        url = f"{settings.OLLAMA_HOST}/api/chat"
 
-    payload = {
-        "model": model,
-        "stream": False,
-        "options": {
+        payload = {
+            "model": model,
+            "stream": False,
+            "options": {
             # Generation controls from central settings
             "temperature": settings.TEMPERATURE,
             "top_p": settings.TOP,
