@@ -7,7 +7,11 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
 import settings
-from ollama_client import call_ollama, OllamaError
+
+import ollama_client
+from ollM_client import call_ollama, OllamaError
+
+import doc_store
 from doc_store import (
     Chunk,
     list_docs,
