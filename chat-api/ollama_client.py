@@ -26,7 +26,7 @@ def embed_text(text: str) -> List[float]:
 
     try:
         with _client(timeout_seconds=60) as client:
-            resp = [client.post](<http://client.post>)(url, json=payload)
+            resp = client.post(url, json=payload)
     except httpx.HTTPError as exc:  # network / transport errors
         raise OllamaError(
             f"Failed to reach Ollama embeddings endpoint: {exc}"
@@ -68,7 +68,7 @@ def embed_text(text: str) -> List[float]:
         "options": {
             # Generation controls from central settings
             "temperature": settings.TEMPERATURE,
-            "top_p": [settings.TOP](<http://settings.TOP>)_P,
+            "top_p": settings.TOP,
             "num_predict": settings.MAX_TOKENS,
         },
         "messages": [
@@ -85,7 +85,7 @@ def embed_text(text: str) -> List[float]:
 
     try:
         with _client(timeout_seconds=settings.MAX_TOKENS * 2) as client:
-            resp = [client.post](<http://client.post>)(url, json=payload)
+            resp = client.post(url, json=payload)
     except httpx.HTTPError as exc:
         raise OllamaError(
             f"Failed to reach Ollama chat endpoint: {exc}"
