@@ -28,7 +28,7 @@ def list_docs() -> List[dict]:
     docs: List[dict] = []
     for path in settings.DOC_STORE_PATH.glob("DOC-*.jsonl"):
         try:
-            count = sum(1 for _ in [path.open](<http://path.open>)("r", encoding="utf-8"))
+            count = sum(1 for _ in path.open("r", encoding="utf-8"))
             docs.append({"doc_id": path.stem, "chunks": count})
         except OSError:
             # Skip unreadable files but do not fail the entire listing
@@ -106,7 +106,7 @@ def save_chunks(chunks: Iterable[Chunk]) -> int:
 
     # All chunks share the same doc_id
     path = doc_path(chunks_list[0].doc_id)
-    with [path.open](<http://path.open>)("a", encoding="utf-8") as f:
+    with path.open("a", encoding="utf-8") as f:
         for ch in chunks_list:
             f.write(json.dumps(asdict(ch), ensure_ascii=False) + "\\n")
     return len(chunks_list)
@@ -117,7 +117,7 @@ def load_doc_chunks(doc_id: str) -> List[Chunk]:
         return []
 
     chunks: List[Chunk] = []
-    with [path.open](<http://path.open>)("r", encoding="utf-8") as f:
+    with path.open("r", encoding="utf-8") as f:
         for line in f:
             try:
                 obj = json.loads(line)
@@ -161,5 +161,5 @@ def retrieve_relevant_chunks(question: str, chunks: List[Chunk]) -> List[Chunk]:
             scored.append((cosine(q_vec, ch.embedding), ch))
 
     scored.sort(key=lambda pair: pair[0], reverse=True)
-    top_k = [settings.TOP](<http://settings.TOP>)_K_CHUNKS
+    top_k = settings.TOP_K_CHUNKS
     return [ch for _score, ch in scored[:top_k]]
