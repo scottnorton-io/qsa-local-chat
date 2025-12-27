@@ -21,5 +21,6 @@ services:
 
 volumes:
   ollama-data:
+    external: true
   chat-doc-store:
   
