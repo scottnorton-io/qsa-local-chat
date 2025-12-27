@@ -41,7 +41,7 @@ async def get_docs():
     """List ingested documents and their chunk counts."""
     return {"documents": list_docs()}
 
-@[app.post](<http://app.post>)("/ingest")
+@app.post("/ingest")
 async def ingest(files: List[UploadFile] = File(...)):
     """Ingest one or more files and return a new doc_id + chunk count.
 
@@ -70,7 +70,7 @@ async def ingest(files: List[UploadFile] = File(...)):
 
     return {"doc_id": doc_id, "chunks": written}
 
-@[app.post](<http://app.post>)("/chat")
+@app.post("/chat")
 async def chat(
     mode: str = Form("general"),
     message: str = Form(...),
