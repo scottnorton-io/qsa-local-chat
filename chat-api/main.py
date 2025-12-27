@@ -9,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 import settings
 
 import ollama_client
-from ollM_client import call_ollama, OllamaError
+from ollama_client import call_ollama, OllamaError
 
 import doc_store
 from doc_store import (
