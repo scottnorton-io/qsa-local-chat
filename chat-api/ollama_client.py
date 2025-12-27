@@ -12,7 +12,7 @@ def _client(timeout_seconds: int = 120) -> httpx.Client:
     """Create an HTTPX client with a bounded timeout."""
     return httpx.Client(timeout=timeout_seconds)
 
-def embed_text(text: str) -> List[float]:
+def embed_text(text: str, timeout: float = 60.0) -> List[float]:
     """Compute an embedding for the given text using Ollama /api/embeddings.
 
     Returns a dense vector as a list of floats, or raises OllamaError on failure.
