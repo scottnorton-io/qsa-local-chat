@@ -57,7 +57,7 @@ async def ingest(files: List[UploadFile] = File(...)):
     all_chunks: List[Chunk] = []
 
     for uf in files:
-        data = await [uf.read](<http://uf.read>)()
+        data = await uf.read()
         text = extract_text_from_upload(uf.filename or "upload", data)
         file_chunks = chunk_text(
             doc_id=doc_id,
@@ -94,7 +94,7 @@ async def chat(
     if files:
         # Ad-hoc evidence: not persisted, only used for this request
         for uf in files:
-            data = await [uf.read](<http://uf.read>)()
+            data = await uf.read()
             text = extract_text_from_upload(uf.filename or "upload", data)
             candidate_chunks.extend(
                 chunk_text(
